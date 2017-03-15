@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/derekja/simpleNode#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "http": "0.0.0"
   }
 }
