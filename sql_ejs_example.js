@@ -8,8 +8,8 @@ app.set('view engine', 'ejs');
 // use res.render to load up an ejs view file
 var connection = mysql.createConnection({
     host: '206.12.96.242',
-    user: 'group0',
-    password: 'untanglingGroup0',
+    user: 'group1',
+    password: 'untanglingGroup1',
     database: 'testDB'
 });
 connection.connect();
@@ -45,6 +45,6 @@ app.get('/about', function(req, res) {
     });
 });
 
-app.listen(8000, function() {
+app.listen(8001, function() {
     console.log('Example app listening on port 8000!')
 })
