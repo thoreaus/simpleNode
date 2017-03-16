@@ -7,7 +7,7 @@ app.set('view engine', 'ejs');
 // use res.render to load up an ejs view file
 
 app.get('/', function(req, res) {
-    res.render('simple1')
+    res.render('simple2')
 })
 
 // about page 

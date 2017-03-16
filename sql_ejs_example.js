@@ -10,16 +10,16 @@ var connection = mysql.createConnection({
     host: '206.12.96.242',
     user: 'group0',
     password: 'untanglingGroup0',
-    database: 'testDB'
+    database: 'group1'
 });
 connection.connect();
 
-var employees;
+var listings;
 
-connection.query('SELECT * FROM employees', function(err, rows, fields) {
+connection.query('SELECT * FROM listings', function(err, rows, fields) {
     if (err) throw err;
 
-    employees = rows;
+    listings = rows;
     console.log(rows[0]);
 });
 
@@ -28,7 +28,7 @@ connection.end();
 app.get('/', function(req, res) {
 
 
-    res.render('simple1', { employees: employees })
+    res.render('simple1', { listings: listings })
 })
 
 // about page 
