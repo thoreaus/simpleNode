@@ -10,13 +10,13 @@ var connection = mysql.createConnection({
     host: '206.12.96.242',
     user: 'group0',
     password: 'untanglingGroup0',
-    database: 'group1'
+    database: 'group0DB'
 });
 connection.connect();
 
 var listings;
 
-connection.query('SELECT * FROM listings', function(err, rows, fields) {
+connection.query('SELECT * FROM stuff WHERE location="sidney"', function(err, rows, fields) {
     if (err) throw err;
 
     listings = rows;
@@ -45,6 +45,6 @@ app.get('/about', function(req, res) {
     });
 });
 
-app.listen(8001, function() {
-    console.log('Example app listening on port 8001!')
+app.listen(8000, function() {
+    console.log('Example app listening on port 8000!')
 })
