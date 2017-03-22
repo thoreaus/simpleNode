@@ -39,6 +39,19 @@ app.post('/query', function(req, res) {
 
     console.log(req.body);
 
+    connection.connect();
+    var q = 'SELECT * FROM stuff WHERE location="' + req.body.queryStr + '"';
+    console.log(q);
+    connection.query('SELECT * FROM stuff WHERE location="sidney"', function(err, rows, fields) {
+        if (err) throw err;
+
+        listings = rows;
+        console.log(rows[0]);
+    });
+
+    connection.end();
+
+    res.send("ok");
 });
 
 // about page 
