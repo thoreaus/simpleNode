@@ -2,6 +2,7 @@ var express = require('express');
 var mysql = require('mysql');
 var app = express();
 var bodyParser = require("body-parser");
+var async = require("async");
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -19,7 +20,7 @@ connection.connect();
 
 var listings;
 
-connection.query('SELECT * FROM stuff WHERE location="sidney"', function(err, rows, fields) {
+connection.query('SELECT * FROM stuff', function(err, rows, fields) {
     if (err) throw err;
 
     listings = rows;
@@ -37,21 +38,40 @@ app.get('/', function(req, res) {
 //query
 app.post('/query', function(req, res) {
 
-    console.log(req.body);
+    //console.log(req.body);
+    async.series([function(callback) {
+            var connection = mysql.createConnection({
+                host: '206.12.96.242',
+                user: 'group0',
+                password: 'untanglingGroup0',
+                database: 'group0DB'
+            });
+            connection.connect();
+            var q = 'SELECT * FROM stuff WHERE location LIKE "' + req.body.queryStr + '"';
+            //console.log(q);
+            connection.query(q, function(err, rows, fields) {
+                if (err) throw err;
 
-    connection.connect();
-    var q = 'SELECT * FROM stuff WHERE location="' + req.body.queryStr + '"';
-    console.log(q);
-    connection.query('SELECT * FROM stuff WHERE location="sidney"', function(err, rows, fields) {
-        if (err) throw err;
+                listings = rows;
+                //console.log(rows[0]);
+                connection.end();
+                callback(null, "query done");
+            });
 
-        listings = rows;
-        console.log(rows[0]);
+
+        }, function(callback) {
+            res.redirect("/");
+            callback(null, "display done");
+        }
+
+
+    ], function(err, results) {
+        //console.log(results);
+        //could do some error processing here
     });
 
-    connection.end();
 
-    res.send("ok");
+
 });
 
 // about page 
