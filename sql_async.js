@@ -74,7 +74,7 @@ app.post('/query', function(req, res) {
 
 });
 
-// about page 
+// about page
 app.get('/about', function(req, res) {
     var sentence = "this is a test about page, passed as a variable through ejs";
     var drinks = [

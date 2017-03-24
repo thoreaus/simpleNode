@@ -8,16 +8,27 @@
 
     <header>
         <% include header %>
+        <style>
+          h1, h2, p {
+            text-align: center;
+            color: darkgrey;
+          }
+          button {
+            background-color: beige;
+            color: orange;
+          }
+
+        </style>
     </header>
 
     <main>
         <div class="jumbotron">
-            <h1>dynamic query example</h1>
-            <p>construct and call a MySQL query</p>
+            <h1>Welcome to Vic Car Rentals</h1>
+            <p>Look up Cars!</p>
         </div>
         <form action="/query" method="post">
             <h2>Query<h2>
-            <label for="queryStr">Enter a location</label>
+            <label for="queryStr">Search:</label>
             <input id="queryStr" type="text" name="queryStr" placeholder="enter name">
             <button id="execute" type="submit">run query</button>
         </form>
@@ -31,6 +42,6 @@
     </main>
 
 
-    
+
 </body>
 </html>
